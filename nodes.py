@@ -1160,8 +1160,8 @@ class EmptyLatentImage:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "width": ("INT", {"default": 512, "min": 16, "max": MAX_RESOLUTION, "step": 8, "tooltip": "The width of the latent images in pixels."}),
-                "height": ("INT", {"default": 512, "min": 16, "max": MAX_RESOLUTION, "step": 8, "tooltip": "The height of the latent images in pixels."}),
+                "width": ("INT", {"default": 512, "min": 0, "max": MAX_RESOLUTION, "step": 8, "tooltip": "The width of the latent images in pixels."}),
+                "height": ("INT", {"default": 512, "min": 0, "max": MAX_RESOLUTION, "step": 8, "tooltip": "The height of the latent images in pixels."}),
                 "batch_size": ("INT", {"default": 1, "min": 1, "max": 4096, "tooltip": "The number of latent images in the batch."})
             }
         }
@@ -1173,6 +1173,22 @@ class EmptyLatentImage:
     DESCRIPTION = "Create a new batch of empty latent images to be denoised via sampling."
 
     def generate(self, width, height, batch_size=1):
+        if width<16 or height<16:
+           list_multiples_of_eight=[]
+           value_for_list=int(360)
+
+           while value_for_list <=1840:
+              list_multiples_of_eight.append(value_for_list )
+              value_for_list=value_for_list+8
+           if width<16:
+                 width = random.choice(list_multiples_of_eight)
+           elif height<16:
+                  height = random.choice(list_multiples_of_eight)
+           else:
+                 width = random.choice(list_multiples_of_eight)   
+                 height = random.choice(list_multiples_of_eight)
+
+        
         latent = torch.zeros([batch_size, 4, height // 8, width // 8], device=self.device)
         return ({"samples":latent}, )
 

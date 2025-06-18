@@ -1180,9 +1180,9 @@ class EmptyLatentImage:
            while value_for_list <=1840:
               list_multiples_of_eight.append(value_for_list )
               value_for_list=value_for_list+8
-           if width<16:
+           if width<16 and height>=16:
                  width = random.choice(list_multiples_of_eight)
-           elif height<16:
+           elif height<16 and width>=16:
                   height = random.choice(list_multiples_of_eight)
            else:
                  width = random.choice(list_multiples_of_eight)   

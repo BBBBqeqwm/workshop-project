@@ -1174,19 +1174,22 @@ class EmptyLatentImage:
 
     def generate(self, width, height, batch_size=1):
         if width<16 or height<16:
-           list_multiples_of_eight=[]
-           value_for_list=int(360)
+            list_multiples_of_eight=[]
+            value_for_list=int(360)
+            
+            #for make a list contain multiples of 8 that start with 360 and end with 1840#
+            while value_for_list <=1840:
+                list_multiples_of_eight.append(value_for_list )
+                value_for_list=value_for_list+8
 
-           while value_for_list <=1840:
-              list_multiples_of_eight.append(value_for_list )
-              value_for_list=value_for_list+8
-           if width<16 and height>=16:
-                 width = random.choice(list_multiples_of_eight)
-           elif height<16 and width>=16:
-                  height = random.choice(list_multiples_of_eight)
-           else:
-                 width = random.choice(list_multiples_of_eight)   
-                 height = random.choice(list_multiples_of_eight)
+            ##the value of width and height will be a random number in the list if the number keyin is same or smaller than 16##    
+            if width<16 and height>=16:
+                width = random.choice(list_multiples_of_eight)
+            elif height<16 and width>=16:
+                height = random.choice(list_multiples_of_eight)
+            else:
+                width = random.choice(list_multiples_of_eight)   
+                height = random.choice(list_multiples_of_eight)
 
         
         latent = torch.zeros([batch_size, 4, height // 8, width // 8], device=self.device)

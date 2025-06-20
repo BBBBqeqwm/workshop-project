@@ -1,3 +1,18 @@
+
+___What is comfyui?__
+
+
+ComfyUI is a powerful graphical user interface (GUI) designed specifically for Stable Diffusion workflows. Unlike traditional web-based interfaces, ComfyUI adopts a node-based approach that allows users to visually construct and customize their AI image generation pipelines through interconnected components.
+
+
+____Some example for the photos about malaysia____
+
+
+https://drive.google.com/drive/folders/12mKpc4N7u5dOBtkbFLnSyDMo7KB6cxy1
+
+
+
+
 <div align="center">
 
 # ComfyUI
